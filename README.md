@@ -30,6 +30,30 @@ No environment variables are required; the defaults work locally. The optional o
 path, CORS origin, API URL) are listed in [`server/README.md`](server/README.md#environment-variables)
 and [`client/README.md`](client/README.md#environment-variables), with a `.env.example` in each folder.
 
+## Deploy with Docker
+
+The server only needs Docker with the Compose plugin. Node and a database aren't required on the host.
+
+```bash
+git clone https://github.com/shlomtzion1980/finqaiAssingment.git
+cd finqaiAssingment
+docker compose up -d --build
+```
+
+The app is then at `http://<your-server>` on port 80. Use `PORT=8080 docker compose up -d --build`
+for another port.
+
+- **client**: nginx serves the built Vue app and forwards `/api` to the server container, so the
+  browser talks to a single origin.
+- **server**: the Node API. SQLite lives on the `profiles-data` volume, so saved profiles survive
+  restarts and redeploys.
+
+Update: `git pull && docker compose up -d --build`. Logs: `docker compose logs -f`.
+Stop: `docker compose down` (add `-v` only if you want to erase the saved data).
+
+For HTTPS, put a reverse proxy such as Caddy or Traefik in front, or a load balancer that
+terminates TLS.
+
 ## Tests
 
 ```bash
