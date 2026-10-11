@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.log
+.env
+.env.local
+
+# SQLite database files created at runtime
+server/data/
+*.db
+*.db-wal
+*.db-shm
+
+.DS_Store
+.vscode/
+.idea/
