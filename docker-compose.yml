@@ -3,7 +3,7 @@ services:
     build: ./server
     restart: unless-stopped
     environment:
-      CORS_ORIGIN: ${PUBLIC_URL:-http://localhost}
+      CORS_ORIGIN: ${PUBLIC_URL:-http://localhost:8090}
     volumes:
       - profiles-data:/data
 
@@ -11,7 +11,7 @@ services:
     build: ./client
     restart: unless-stopped
     ports:
-      - "${PORT:-80}:80"
+      - "${PORT:-8090}:80"
     depends_on:
       server:
         condition: service_healthy

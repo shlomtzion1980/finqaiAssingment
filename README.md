@@ -40,8 +40,8 @@ cd finqaiAssingment
 docker compose up -d --build
 ```
 
-The app is then at `http://<your-server>` on port 80. Use `PORT=8080 docker compose up -d --build`
-for another port.
+The app is then at `http://<your-server>:8090`. Use `PORT=9000 docker compose up -d --build` for
+another port, or `PORT=127.0.0.1:8090` to listen only locally behind a reverse proxy.
 
 - **client**: nginx serves the built Vue app and forwards `/api` to the server container, so the
   browser talks to a single origin.
