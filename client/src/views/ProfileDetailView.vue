@@ -299,9 +299,10 @@ const sourceLabel = computed(() =>
 
 .profile {
   display: grid;
-  grid-template-columns: 15rem 1fr;
+  grid-template-columns: 15rem minmax(0, 1fr);
   gap: 2.5rem;
   padding: 2rem;
+  min-inline-size: 0;
 }
 
 .portrait {
@@ -323,6 +324,7 @@ const sourceLabel = computed(() =>
   gap: 1.75rem;
   align-content: start;
   max-inline-size: 44rem;
+  min-inline-size: 0;
 }
 
 .profile-head {
@@ -364,6 +366,7 @@ const sourceLabel = computed(() =>
 .sheet {
   display: grid;
   gap: 1.75rem;
+  min-inline-size: 0;
 }
 
 .name-fieldset {
@@ -381,13 +384,15 @@ const sourceLabel = computed(() =>
 
 .name-grid {
   display: grid;
-  grid-template-columns: 6rem 1fr 1fr;
+  grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.75rem;
+  min-inline-size: 0;
 }
 
 .input-group {
   display: grid;
   gap: 0.35rem;
+  min-inline-size: 0;
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--muted);
@@ -395,6 +400,8 @@ const sourceLabel = computed(() =>
 
 .input-group input {
   inline-size: 100%;
+  min-inline-size: 0;
+  max-inline-size: 100%;
   font-size: 1rem;
   font-weight: 400;
   /* Each input aligns to its own content direction: Latin left, Hebrew/Persian right. */
@@ -420,7 +427,7 @@ const sourceLabel = computed(() =>
 
 .facts > div {
   display: grid;
-  grid-template-columns: 7rem 1fr;
+  grid-template-columns: 7rem minmax(0, 1fr);
   gap: 1rem;
   padding-block: 0.8rem;
   border-block-end: 1px solid var(--line);
@@ -433,6 +440,8 @@ const sourceLabel = computed(() =>
 
 .facts dd {
   margin: 0;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 
 .facts a {
@@ -489,21 +498,43 @@ const sourceLabel = computed(() =>
 
 @media (max-width: 760px) {
   .profile {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.25rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.25rem 1rem;
   }
 
   .portrait {
-    max-inline-size: 9rem;
+    max-inline-size: 8.5rem;
+    justify-self: center;
+  }
+
+  .profile-head {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .profile-head h1 {
+    overflow-wrap: anywhere;
   }
 
   .name-grid {
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .name-grid > :last-child {
+  .facts > div {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .back,
+  .confirm {
     grid-column: 1 / -1;
+    margin-inline-start: 0;
   }
 }
 </style>

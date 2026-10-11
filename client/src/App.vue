@@ -117,4 +117,10 @@ nav a.router-link-active {
   padding-inline: 1.5rem;
   padding-block-end: 4rem;
 }
+
+@media (max-width: 760px) {
+  .content {
+    padding-inline: 0.75rem;
+  }
+}
 </style>
